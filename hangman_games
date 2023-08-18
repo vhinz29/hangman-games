@@ -1,0 +1,87 @@
+import random
+import string
+
+change,pick,name1,repeat,repeat1,temp1,letter1,letter,a ,tries,i,pick1,choice = "","","",[],"" ,[] ,"","",1,2,1,"",""
+hard = ["georgous", "beauty", "perfect", "cruel", "sexy", "greatest", "candid", "boxer", "intelligent", "clever", "chill", "encoder", "awesome"]
+normal = ["charm", "beauty", "cute", "cruel", "sexy", "great", "good", "handsome", "program"]
+easy = ["candid", "brave", "smart", "clever", "pretty", "cool"]
+while True:
+    while a == 0:
+        a += 1
+        print("correct word :>", temp2)
+        print("congratulations")
+        
+    change,pick,name1,repeat1,letter,letter1,choose,choice,i,tries,temp1,repeat = "","","","","","","","",1,4,[],[]
+    print(" ")
+    pick = input("play guess y/n :>  ")
+    if pick == "n":
+        print("have a nice day")
+        break
+    elif pick != "y" and "n":
+        print("invalid entry")
+    else:
+        choice = input("choose to select easy[e], normal[n], hard[h] :> ")
+        if choice == "e":
+            temp2 = random.choice(easy)
+            temp = list(dict.fromkeys(temp2))
+            temp1 = temp
+            loop = len(temp1)
+            print(temp2)
+
+        elif choice == "n":
+            temp2 = random.choice(normal)
+            temp = list(dict.fromkeys(temp2))
+            temp1 = temp
+            loop = len(temp)
+            print(temp2)
+        elif choice == "h":
+            temp2 = random.choice(hard)
+            temp = list(dict.fromkeys(temp2))
+            temp1 = temp
+            loop = len(temp)
+            print(temp2)
+        else:
+            print("invalid entry")
+            print("")
+
+        while tries >= 1:
+            letter = input("\ninput letter: ")
+            name1 += letter
+            letter1 += letter
+
+            print("")
+            word_list = [letter if letter in name1 else "-" for letter in temp2]
+            print("current word: ", " ".join(word_list))
+            print("")
+            if letter in temp:
+                temp.remove(letter)
+                pick = temp
+                repeat.append(letter)
+                repeat1 = "".join(repeat)
+                if pick == []:
+                    a -= 1
+                    tries = 0
+
+            elif letter in repeat:
+                tries -= 1
+                print("already select:> ", letter)
+                print(tries, " guess left")
+
+                if tries == 0:
+                    print("sorry you lose")
+                    print("correct word :>", temp2)
+
+
+
+            elif repeat and pick != temp2 or " ":
+                tries -= 1
+                print("wrong guess")
+                print(tries, " guess left")
+
+                if tries == 0:
+                    print("sorry you lose")
+                    print("correct word :>", temp2)
+
+            print("guess letter :>  ", name1, )
+
+print("goodbye")
